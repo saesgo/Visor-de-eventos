@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="js/credenciales.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Turnos siguientes</h1>
+    </header>
+    <main>
+        <div id="turnosContainer"></div>
+        <div id="detalleContainer" class="escondido">
+            <h2 id="cliente">Nombre</h2>
+            <p>ID: <span id="id" contenteditable="true"></span></p>
+            <p>Nombre del evaluador: <span id="nombreEvaluador" contenteditable="true"></span></p>
+            <p>Titulo del problema: <span id="tituloProblema" contenteditable="true"></span></p>
+            <p>Descripción del problema: <span id="descripcionProblema" contenteditable="true"></span></p>
+            <div>
+                <label for="comentario">Comentario del técnico:</label>
+                <input type="text" id="comentario" name="comentario">
+            </div>
+            <img id="imagen" src="" alt="Imagen del problema">
+            <button id="finalizar">Marcar finalizado</button>
+        </div>
+    </main>
+	<!-- Add buttons to initiate auth sequence and sign out -->
+	<button id="authorize_button" onclick="handleAuthClick()">Iniciar sesión</button>
+	<button id="signout_button" onclick="handleSignoutClick()">Cerrar sesión</button>
+
+
+    <!-- Botón para agregar un nuevo turno -->
+    <button id="agregarTurno" style="display: none;">Agregar Turno</button>
+	
+<!-- Formulario para agregar un nuevo evento -->
+	<div id="nuevoTurnoForm" class="escondido">
+	<h2>Agregar Nuevo evento</h2>
+	<form id="formularioTurno">
+		<label for="tituloProblema">Título del problema:</label>
+		<input type="text" id="tituloProblema" name="tituloProblema" required>
+		<label for="evaluador">Evaluador:</label>
+		<input type="text" id="evaluador" name="evaluador" required>
+		<label for="descripcionProblema">Descripción del problema:</label>
+		<textarea id="descripcionProblema" name="descripcionProblema" rows="4" required></textarea>
+		<label for="imagen">URL de la imagen:</label>
+		<input type="text" id="imagen" name="imagen" required>
+		<button type="submit">Agregar</button>
+	</form>
+	
+	
+	</div>
+
+    <script async defer src="https://apis.google.com/js/api.js" id="gapi"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" id="gis"></script>
+    <script async defer src="js/auth.js"></script>
+    <script async defer src="js/sheets.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
