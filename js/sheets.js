@@ -4,7 +4,7 @@ async function getTurnos() {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A2:G', 
+      range: 'Turnos!A2:E', 
     });
 
     const range = response.result;
