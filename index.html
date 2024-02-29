@@ -29,7 +29,7 @@
                 <input type="text" id="comentario" name="comentario">
             </div>
             <img id="imagen" src="" alt="Imagen del problema">
-            <button id="finalizar">Marcar finalizado</button>
+            <!-- Eliminamos el botón de marcar finalizado -->
         </div>
     </main>
     <!-- Add buttons to initiate auth sequence and sign out -->
@@ -49,10 +49,11 @@
             <input type="text" id="evaluadorNuevo" name="evaluadorNuevo" required>
             <label for="descripcionProblemaNuevo">Descripción del problema:</label>
             <textarea id="descripcionProblemaNuevo" name="descripcionProblemaNuevo" rows="4" required></textarea>
-            <label for="imagenInputNuevo">Cargar imagen:</label>
-            <input type="file" id="imagenInputNuevo" name="imagenInputNuevo" accept="image/*" required>
+            <!-- Agregamos un campo para ingresar la URL de la imagen -->
+            <label for="imagenInputNuevo">URL de la imagen:</label>
+            <input type="text" id="imagenInputNuevo" name="imagenInputNuevo" required>
             <button type="submit">Agregar</button>
-        </form>
+        </form>        
     </div>
 
     <script async defer src="https://apis.google.com/js/api.js" id="gapi"></script>

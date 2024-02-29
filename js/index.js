@@ -34,82 +34,31 @@ async function getUltimoID() {
 }
 
 async function agregarNuevoTurno(turno) {
-    const id = await getUltimoID(); // Obtiene el ID automáticamente
-    turno.id = id.toString(); // Convierte el ID a cadena de texto y lo asigna al turno
+  const id = await getUltimoID(); // Obtiene el ID automáticamente
+  turno.id = id.toString(); // Convierte el ID a cadena de texto y lo asigna al turno
 
-    // Subir imagen a Imgur y obtener la URL de la imagen
-    const imagenUrl = await subirImagenAImgur(turno.imagen);
-    if (!imagenUrl) {
-        console.error("Error al subir la imagen a Imgur");
-        return null;
-    }
+  const update = [
+      turno.id,
+      turno.cliente,
+      turno.evaluador,
+      turno.tituloProblema,
+      turno.descripcionProblema,
+      turno.imagen  // Usamos directamente la URL de la imagen
+  ];
 
-    turno.imagen = imagenUrl; // Actualizar la URL de la imagen en el objeto turno
-
-    const update = [
-        turno.id,
-        turno.cliente,
-        turno.evaluadorNuevo,
-        turno.tituloProblema,
-        turno.descripcionProblema,
-        turno.imagen
-    ];
-
-    try {
-        const response = await gapi.client.sheets.spreadsheets.values.append({
-            spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-            range: `Turnos!A:E`,
-            valueInputOption: "USER_ENTERED",
-            insertDataOption: "INSERT_ROWS",
-            values: [update],
-        });
-
-        return response;
-    } catch (err) {
-        console.error(err);
-        return null;
-    }
-}
-
-async function subirImagenAImgur(imagen) {
   try {
-      const clientId = '0b23c4d1744388a'; // Reemplazar con tu Client ID de Imgur
-      const formData = new FormData();
-      formData.append('image', imagen);
-
-      const response = await fetch('https://api.imgur.com/3/image', {
-          method: 'POST',
-          headers: {
-              'Authorization': `Client-ID ${clientId}`
-          },
-          body: formData
+      const response = await gapi.client.sheets.spreadsheets.values.append({
+          spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
+          range: `Turnos!A:E`,
+          valueInputOption: "USER_ENTERED",
+          insertDataOption: "INSERT_ROWS",
+          values: [update],
       });
 
-      const data = await response.json();
-      if (data.success) {
-          const imageUrl = data.data.link; // Obtener la URL de la imagen subida
-          mostrarUrlDeImagen(imageUrl); // Llamar a la función para mostrar la URL en tu aplicación
-          return imageUrl;
-      } else {
-          console.error("Error al subir la imagen a Imgur:", data.data.error);
-          return null;
-      }
+      return response;
   } catch (err) {
-      console.error("Error al subir la imagen a Imgur:", err);
+      console.error(err);
       return null;
-  }
-}
-
-function mostrarUrlDeImagen(imageUrl) {
-  // Obtener el elemento HTML donde quieres mostrar la URL de la imagen
-  const urlElement = document.getElementById("urlImagen");
-
-  // Verificar si se encontró el elemento
-  if (urlElement) {
-      // Asignar la URL de la imagen al contenido del elemento HTML
-      urlElement.textContent = imageUrl;
-  } else {
-      console.error("Elemento para mostrar la URL de la imagen no encontrado");
   }
 }
 
