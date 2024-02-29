@@ -73,19 +73,22 @@ async function agregarNuevoTurno(turno) {
 
 async function subirImagenAImgur(imagen) {
   try {
-      const clientId = '042eea9e896a4f1'; // Reemplazar con tu Client ID de Imgur
+      const clientId = 'd2cb3ec841aa696'; // Reemplazar con tu Client ID de Imgur
       const formData = new FormData();
       formData.append('image', imagen);
 
-      const response = await fetch('https://api.imgur.com/3/image', {
+      const requestOptions = {
           method: 'POST',
           headers: {
               'Authorization': `Client-ID ${clientId}`
           },
-          body: formData
-      });
+          body: formData,
+          redirect: 'follow'
+      };
 
+      const response = await fetch('https://api.imgur.com/3/image', requestOptions);
       const data = await response.json();
+
       if (data.success) {
           return data.data.link; // Devuelve la URL de la imagen subida a Imgur
       } else {
