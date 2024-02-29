@@ -27,10 +27,9 @@
             <div>
                 <label for="comentario">Comentario del técnico:</label>
                 <input type="text" id="comentario" name="comentario">
-                <button id="finalizar">Marcar finalizado</button>
             </div>
             <img id="imagen" src="" alt="Imagen del problema">
-            
+            <button id="finalizar">Marcar como terminado</button>
         </div>
     </main>
     <!-- Add buttons to initiate auth sequence and sign out -->
@@ -50,9 +49,7 @@
             <input type="text" id="evaluadorNuevo" name="evaluadorNuevo" required>
             <label for="descripcionProblemaNuevo">Descripción del problema:</label>
             <textarea id="descripcionProblemaNuevo" name="descripcionProblemaNuevo" rows="4" required></textarea>
-            <!-- Agregamos un campo para ingresar la URL de la imagen -->
-            <label for="imagenInputNuevo">URL de la imagen:</label>
-            <input type="text" id="imagenInputNuevo" name="imagenInputNuevo" required>
+            <!-- Eliminamos el input de tipo file -->
             <button type="submit">Agregar</button>
         </form>        
     </div>
