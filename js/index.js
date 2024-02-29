@@ -104,22 +104,35 @@ async function marcarTerminado(i) {
   updateTurno.fechaHora = new Date().toISOString(); // Agrega la fecha y hora actual al turno
 
   const filaAEditar = 0; // Define filaAEditar según sea necesario
-  const res = await editTurno(updateTurno.id, updateTurno, filaAEditar);
-  if (res.status === 200) {
-        turnos = turnos.filter(turno => turno.id !== updateTurno.id);
-        indiceSeleccionado = 0;
 
-        // Ocultar las tarjetas marcadas
-        Array.from(turnosContainer.children).forEach((tarjeta, index) => {
-            if (index === indiceSeleccionado) {
-                tarjeta.classList.toggle("seleccionado", false);
-            }
-        });
+  try {
+      const res = await editTurno(updateTurno.id, updateTurno, filaAEditar);
+      if (res.status === 200) {
+          // Filtrar el turno marcado como terminado
+          turnos = turnos.filter(turno => turno.id !== updateTurno.id);
+          indiceSeleccionado = 0;
 
-        await actualizarTarjetas();
-        detalleContainer.classList.toggle("escondido", true);
-        comentarioElement.value = "";
-    }
+          // Ocultar las tarjetas marcadas
+          Array.from(turnosContainer.children).forEach((tarjeta, index) => {
+              if (index === indiceSeleccionado) {
+                  tarjeta.classList.toggle("seleccionado", false);
+              }
+          });
+
+          // Actualizar las tarjetas
+          await actualizarTarjetas();
+
+          // Ocultar el detalleContainer
+          detalleContainer.classList.toggle("escondido", true);
+
+          // Limpiar el campo de comentario
+          comentarioElement.value = "";
+      } else {
+          console.error("Error al marcar como terminado el turno:", res);
+      }
+  } catch (error) {
+      console.error("Error al marcar como terminado el turno:", error);
+  }
 }
 
 agregarTurnoButton.addEventListener("click", () => {
