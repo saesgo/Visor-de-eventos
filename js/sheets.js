@@ -4,7 +4,7 @@ async function getTurnos() {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A2:G', // Rango corregido para incluir las cinco columnas
+      range: 'Turnos!A2:G', // Rango corregido para incluir las siete columnas
     });
 
     const range = response.result;
@@ -33,8 +33,7 @@ async function getTurnos() {
   }
 }
 
-
-async function editTurno(id, contenido) {
+async function editTurno(id, contenido, filaAEditar) {
   const update = [
     contenido.id,
     contenido.evaluador,
@@ -45,12 +44,10 @@ async function editTurno(id, contenido) {
     contenido.comentario
   ];
 
-
-
   try {
     const response = await gapi.client.sheets.spreadsheets.values.update({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: `Turnos!A1:G1`, // Rango corregido para incluir las cinco columnas
+      range: `Turnos!A${filaAEditar}:G${filaAEditar}`, // Rango corregido para incluir las siete columnas
       values: [update],
       valueInputOption: "USER_ENTERED"
     });
@@ -66,15 +63,17 @@ async function addTurno(turno) {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.append({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A:E',
+      range: 'Turnos!A:G', 
       valueInputOption: 'USER_ENTERED',
       resource: {
         values: [[
-          turno.cliente,
+          turno.id,
           turno.evaluador,
           turno.tituloProblema,
           turno.descripcionProblema,
-          turno.imagen
+          turno.imagen,
+          new Date().toISOString(),
+          turno.comentario
         ]]
       }
     });
@@ -89,7 +88,7 @@ async function getLastId() {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A:E', // Rango que abarca todas las columnas necesarias
+      range: 'Turnos!A:E', 
     });
 
     const range = response.result;
@@ -106,4 +105,3 @@ async function getLastId() {
     console.error(err);
     return 0; // En caso de error, devolvemos 0 como el último ID
   }
-}
