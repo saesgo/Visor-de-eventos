@@ -1,3 +1,5 @@
+// Código JavaScript corregido y mejorado
+
 const turnosContainer = document.getElementById("turnosContainer");
 const detalleContainer = document.getElementById("detalleContainer");
 let indiceSeleccionado;
