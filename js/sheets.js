@@ -47,7 +47,7 @@ async function editTurno(id, contenido, filaAEditar) {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.update({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: `Turnos!A2:G`, // Rango corregido para incluir las siete columnas
+      range: `Turnos!A:G`, // Rango corregido para incluir las siete columnas
       values: [update],
       valueInputOption: "USER_ENTERED"
     });
@@ -105,3 +105,4 @@ async function getLastId() {
     console.error(err);
     return 0; // En caso de error, devolvemos 0 como el último ID
   }
+}
