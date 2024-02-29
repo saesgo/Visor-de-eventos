@@ -73,24 +73,23 @@ async function agregarNuevoTurno(turno) {
 
 async function subirImagenAImgur(imagen) {
   try {
-      const clientId = 'd2cb3ec841aa696'; // Reemplazar con tu Client ID de Imgur
+      const clientId = '0b23c4d1744388a'; // Reemplazar con tu Client ID de Imgur
       const formData = new FormData();
       formData.append('image', imagen);
 
-      const requestOptions = {
+      const response = await fetch('https://api.imgur.com/3/image', {
           method: 'POST',
           headers: {
               'Authorization': `Client-ID ${clientId}`
           },
-          body: formData,
-          redirect: 'follow'
-      };
+          body: formData
+      });
 
-      const response = await fetch('https://api.imgur.com/3/image', requestOptions);
       const data = await response.json();
-
       if (data.success) {
-          return data.data.link; // Devuelve la URL de la imagen subida a Imgur
+          const imageUrl = data.data.link; // Obtener la URL de la imagen subida
+          mostrarUrlDeImagen(imageUrl); // Llamar a la función para mostrar la URL en tu aplicación
+          return imageUrl;
       } else {
           console.error("Error al subir la imagen a Imgur:", data.data.error);
           return null;
@@ -98,6 +97,19 @@ async function subirImagenAImgur(imagen) {
   } catch (err) {
       console.error("Error al subir la imagen a Imgur:", err);
       return null;
+  }
+}
+
+function mostrarUrlDeImagen(imageUrl) {
+  // Obtener el elemento HTML donde quieres mostrar la URL de la imagen
+  const urlElement = document.getElementById("urlImagen");
+
+  // Verificar si se encontró el elemento
+  if (urlElement) {
+      // Asignar la URL de la imagen al contenido del elemento HTML
+      urlElement.textContent = imageUrl;
+  } else {
+      console.error("Elemento para mostrar la URL de la imagen no encontrado");
   }
 }
 
