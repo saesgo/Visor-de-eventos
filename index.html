@@ -31,31 +31,28 @@
             <button id="finalizar">Marcar finalizado</button>
         </div>
     </main>
-	<!-- Add buttons to initiate auth sequence and sign out -->
-	<button id="authorize_button" onclick="handleAuthClick()">Iniciar sesión</button>
-	<button id="signout_button" onclick="handleSignoutClick()">Cerrar sesión</button>
-
+    <!-- Add buttons to initiate auth sequence and sign out -->
+    <button id="authorize_button" onclick="handleAuthClick()">Iniciar sesión</button>
+    <button id="signout_button" onclick="handleSignoutClick()">Cerrar sesión</button>
 
     <!-- Botón para agregar un nuevo turno -->
     <button id="agregarTurno" style="display: none;">Agregar Turno</button>
-	
-<!-- Formulario para agregar un nuevo evento -->
-	<div id="nuevoTurnoForm" class="escondido">
-	<h2>Agregar Nuevo evento</h2>
-	<form id="formularioTurno">
-		<label for="tituloProblema">Título del problema:</label>
-		<input type="text" id="tituloProblema" name="tituloProblema" required>
-		<label for="evaluador">Evaluador:</label>
-		<input type="text" id="evaluador" name="evaluador" required>
-		<label for="descripcionProblema">Descripción del problema:</label>
-		<textarea id="descripcionProblema" name="descripcionProblema" rows="4" required></textarea>
-		<label for="imagen">URL de la imagen:</label>
-		<input type="text" id="imagenURL" name="imagenURL" required>
-		<button type="submit">Agregar</button>
-	</form>
-	
-	
-	</div>
+
+    <!-- Formulario para agregar un nuevo evento -->
+    <div id="nuevoTurnoForm" class="escondido">
+        <h2>Agregar Nuevo evento</h2>
+        <form id="formularioTurno">
+            <label for="tituloProblema">Título del problema:</label>
+            <input type="text" id="tituloProblema" name="tituloProblema" required>
+            <label for="evaluador">Evaluador:</label>
+            <input type="text" id="evaluador" name="evaluador" required>
+            <label for="descripcionProblema">Descripción del problema:</label>
+            <textarea id="descripcionProblema" name="descripcionProblema" rows="4" required></textarea>
+            <label for="imagen">Cargar imagen:</label>
+            <input type="file" id="imagenInput" name="imagenInput" accept="image/*" required>
+            <button type="submit">Agregar</button>
+        </form>
+    </div>
 
     <script async defer src="https://apis.google.com/js/api.js" id="gapi"></script>
     <script async defer src="https://accounts.google.com/gsi/client" id="gis"></script>
@@ -63,4 +60,5 @@
     <script async defer src="js/sheets.js"></script>
     <script src="js/index.js"></script>
 </body>
+
 </html>
