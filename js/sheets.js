@@ -63,12 +63,11 @@ async function addTurno(turno) {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.append({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A:E', 
+      range: 'Turnos!A:G', 
       valueInputOption: 'USER_ENTERED',
       resource: {
         values: [[
           turno.id,
-          turno.cliente,
           turno.evaluador,
           turno.tituloProblema,
           turno.descripcionProblema,
