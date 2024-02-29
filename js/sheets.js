@@ -4,7 +4,7 @@ async function getTurnos() {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A2:E', 
+      range: 'Turnos!A2:G', 
     });
 
     const range = response.result;
@@ -63,7 +63,7 @@ async function addTurno(turno) {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.append({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A:G', 
+      range: 'Turnos!A:E', 
       valueInputOption: 'USER_ENTERED',
       resource: {
         values: [[
@@ -89,7 +89,7 @@ async function getLastId() {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A:G', 
+      range: 'Turnos!A:E', 
     });
 
     const range = response.result;
