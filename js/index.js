@@ -39,7 +39,6 @@ async function agregarNuevoTurno(turno) {
 
   const update = [
       turno.id,
-      turno.cliente,
       turno.evaluador,
       turno.tituloProblema,
       turno.descripcionProblema,
@@ -49,7 +48,7 @@ async function agregarNuevoTurno(turno) {
   try {
       const response = await gapi.client.sheets.spreadsheets.values.append({
           spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-          range: `Turnos!A1:G`,
+          range: `Turnos!A1:E`,
           valueInputOption: "USER_ENTERED",
           insertDataOption: "INSERT_ROWS",
           values: [update],
