@@ -33,21 +33,32 @@ async function getTurnos() {
   }
 }
 
-async function editTurno(id, contenido, filaAEditar) {
-  const update = [
-    contenido.id,
-    contenido.evaluador,
-    contenido.tituloProblema,
-    contenido.descripcionProblema,
-    contenido.imagen,
-    new Date().toISOString(),
-    contenido.comentario
-  ];
-
+async function editTurno(id, contenido) {
   try {
+    // Encuentra el índice del turno en el array de turnos
+    const index = turnos.findIndex(turno => turno.id === id);
+    if (index === -1) {
+      console.error('No se encontró el turno con el ID especificado');
+      return;
+    }
+
+    // Calcula el número de fila en Sheets (sumando 2 porque empezamos desde la fila 2)
+    const filaAEditar = index + 2;
+
+    const update = [
+      contenido.id,
+      contenido.evaluador,
+      contenido.tituloProblema,
+      contenido.descripcionProblema,
+      contenido.imagen,
+      new Date().toISOString(),
+      contenido.comentario
+    ];
+
+    // Actualiza solo la fila correspondiente en Sheets
     const response = await gapi.client.sheets.spreadsheets.values.update({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: `Turnos!A${filaAEditar}:G${filaAEditar}`, // Rango corregido para incluir las siete columnas
+      range: `Turnos!A${filaAEditar}:G${filaAEditar}`,
       values: [update],
       valueInputOption: "USER_ENTERED"
     });
