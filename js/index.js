@@ -16,7 +16,7 @@ async function getUltimoID() {
     try {
         const response = await gapi.client.sheets.spreadsheets.values.get({
             spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-            range: 'Turnos!A:G',
+            range: 'Turnos!A1:G',
         });
 
         const range = response.result;
@@ -49,7 +49,7 @@ async function agregarNuevoTurno(turno) {
   try {
       const response = await gapi.client.sheets.spreadsheets.values.append({
           spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-          range: `Turnos!A:G`,
+          range: `Turnos!A1:G`,
           valueInputOption: "USER_ENTERED",
           insertDataOption: "INSERT_ROWS",
           values: [update],
