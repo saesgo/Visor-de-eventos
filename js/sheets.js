@@ -72,26 +72,24 @@ async function editTurno(id, contenido) {
 
 async function addTurno(turno) {
   try {
-    const response = await gapi.client.sheets.spreadsheets.values.append({
-      spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A:G', 
-      valueInputOption: 'USER_ENTERED',
-      resource: {
-        values: [[
-          turno.id,
-          turno.evaluador,
-          turno.tituloProblema,
-          turno.descripcionProblema,
-          turno.imagen,
-          new Date().toISOString(),
-          turno.comentario
-        ]]
-      }
-    });
+      const response = await gapi.client.sheets.spreadsheets.values.append({
+          spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
+          range: 'Turnos!A:E',
+          valueInputOption: 'USER_ENTERED',
+          resource: {
+              values: [[
+                  turno.cliente,
+                  turno.evaluador,
+                  turno.tituloProblema,
+                  turno.descripcionProblema,
+                  turno.imagen
+              ]]
+          }
+      });
 
-    console.log('Turno agregado:', response);
+      console.log('Turno agregado:', response);
   } catch (error) {
-    console.error('Error al agregar turno:', error);
+      console.error('Error al agregar turno:', error);
   }
 }
 
