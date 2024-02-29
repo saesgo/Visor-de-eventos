@@ -89,7 +89,7 @@ async function getLastId() {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A:H', // Ajusta el rango para incluir la columna de imagen (H)
+      range: 'Turnos!A:E', // Ajusta el rango para incluir la columna de imagen (H)
     });
 
     const range = response.result;
