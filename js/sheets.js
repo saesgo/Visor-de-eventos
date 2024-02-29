@@ -47,7 +47,7 @@ async function editTurno(id, contenido) {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.update({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: `Turnos!A${filaAEditar}:H${filaAEditar}`, // Ajusta el rango para incluir la columna de imagen (H)
+      range: `Turnos!A2:H`, // Ajusta el rango para incluir la columna de imagen (H)
       values: [update],
       valueInputOption: "USER_ENTERED"
     });
