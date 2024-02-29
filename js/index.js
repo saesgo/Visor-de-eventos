@@ -99,11 +99,13 @@ function actualizarDetalle(index) {
 finalizar.addEventListener("click", () => marcarTerminado(indiceSeleccionado));
 
 async function marcarTerminado(i) {
-    const updateTurno = turnos[i];
-    updateTurno.comentario = comentarioElement.value;
-    const filaAEditar = 0; // Define filaAEditar según sea necesario
-    const res = await editTurno(updateTurno.id, updateTurno, filaAEditar);
-    if (res.status === 200) {
+  const updateTurno = turnos[i];
+  updateTurno.comentario = comentarioElement.value;
+  updateTurno.fechaHora = new Date().toISOString(); // Agrega la fecha y hora actual al turno
+
+  const filaAEditar = 0; // Define filaAEditar según sea necesario
+  const res = await editTurno(updateTurno.id, updateTurno, filaAEditar);
+  if (res.status === 200) {
         turnos = turnos.filter(turno => turno.id !== updateTurno.id);
         indiceSeleccionado = 0;
 
