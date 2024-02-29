@@ -4,7 +4,7 @@ async function getTurnos() {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A2:G', // Rango corregido para incluir las cinco columnas
+      range: 'Turnos!A2:H', // Ajusta el rango para incluir la columna de imagen (H)
     });
 
     const range = response.result;
@@ -15,7 +15,7 @@ async function getTurnos() {
 
     turnos = [];
     range.values.forEach((fila) => {
-      if (isNaN(parseInt(fila[0])) || fila[6] !== undefined) return;
+      if (isNaN(parseInt(fila[0])) || fila[7] !== undefined) return;
       const nuevoTurno = {
         id: fila[0],
         evaluador: fila[1], 
@@ -28,11 +28,10 @@ async function getTurnos() {
       turnos.push(nuevoTurno);
     });
     console.log(turnos);
-    } catch (err) {
+  } catch (err) {
     console.error(err);
   }
 }
-
 
 async function editTurno(id, contenido) {
   const update = [
@@ -45,12 +44,10 @@ async function editTurno(id, contenido) {
     contenido.comentario
   ];
 
-  
-
   try {
     const response = await gapi.client.sheets.spreadsheets.values.update({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: `Turnos!A${filaAEditar}:G${filaAEditar}`, // Rango corregido para incluir las cinco columnas
+      range: `Turnos!A${filaAEditar}:H${filaAEditar}`, // Ajusta el rango para incluir la columna de imagen (H)
       values: [update],
       valueInputOption: "USER_ENTERED"
     });
@@ -64,46 +61,49 @@ async function editTurno(id, contenido) {
 
 async function addTurno(turno) {
   try {
-      const response = await gapi.client.sheets.spreadsheets.values.append({
-          spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-          range: 'Turnos!A:E',
-          valueInputOption: 'USER_ENTERED',
-          resource: {
-              values: [[
-                  turno.cliente,
-                  turno.evaluador,
-                  turno.tituloProblema,
-                  turno.descripcionProblema,
-                  turno.imagen
-              ]]
-          }
-      });
+    const response = await gapi.client.sheets.spreadsheets.values.append({
+      spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
+      range: 'Turnos!A:H', // Ajusta el rango para incluir la columna de imagen (H)
+      valueInputOption: 'USER_ENTERED',
+      resource: {
+        values: [[
+          turno.id,
+          turno.cliente,
+          turno.evaluador,
+          turno.tituloProblema,
+          turno.descripcionProblema,
+          turno.imagen,
+          new Date().toISOString(),
+          turno.comentario
+        ]]
+      }
+    });
 
-      console.log('Turno agregado:', response);
+    console.log('Turno agregado:', response);
   } catch (error) {
-      console.error('Error al agregar turno:', error);
+    console.error('Error al agregar turno:', error);
   }
 }
 
 async function getLastId() {
   try {
-      const response = await gapi.client.sheets.spreadsheets.values.get({
-          spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-          range: 'Turnos!A:E', // Rango que abarca todas las columnas necesarias
-      });
+    const response = await gapi.client.sheets.spreadsheets.values.get({
+      spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
+      range: 'Turnos!A:H', // Ajusta el rango para incluir la columna de imagen (H)
+    });
 
-      const range = response.result;
-      if (!range || !range.values || range.values.length === 0) {
-          console.warn("No se encontraron valores");
-          return 0; // Si no hay valores, devolvemos 0 como el último ID
-      }
+    const range = response.result;
+    if (!range || !range.values || range.values.length === 0) {
+      console.warn("No se encontraron valores");
+      return 0; // Si no hay valores, devolvemos 0 como el último ID
+    }
 
-      // Obtenemos el último ID de la última fila
-      const lastRow = range.values[range.values.length - 1];
-      const lastId = parseInt(lastRow[0]);
-      return lastId;
+    // Obtenemos el último ID de la última fila
+    const lastRow = range.values[range.values.length - 1];
+    const lastId = parseInt(lastRow[0]);
+    return lastId;
   } catch (err) {
-      console.error(err);
-      return 0; // En caso de error, devolvemos 0 como el último ID
+    console.error(err);
+    return 0; // En caso de error, devolvemos 0 como el último ID
   }
 }
