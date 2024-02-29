@@ -15,7 +15,7 @@ async function getTurnos() {
 
     turnos = [];
     range.values.forEach((fila) => {
-      if (isNaN(parseInt(fila[0])) || fila[7] !== undefined) return;
+      if (isNaN(parseInt(fila[0])) || fila[6] !== undefined) return;
       const nuevoTurno = {
         id: fila[0],
         evaluador: fila[1], 
@@ -47,7 +47,7 @@ async function editTurno(id, contenido) {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.update({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: `Turnos!A2:G`, 
+      range: `Turnos!A2:E`, 
       values: [update],
       valueInputOption: "USER_ENTERED"
     });
@@ -63,7 +63,7 @@ async function addTurno(turno) {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.append({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A:G', 
+      range: 'Turnos!A:E', 
       valueInputOption: 'USER_ENTERED',
       resource: {
         values: [[
