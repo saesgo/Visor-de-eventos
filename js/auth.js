@@ -79,7 +79,7 @@ function handleAuthClick() {
     document.getElementById('agregarTurno').style.display = 'block'; // Mostrar el botón de "Agregar Turno"
   };
 
-  if (tokenClient.getToken() === null) {
+  if (gapi.client.getToken() === null) {
     // Prompt the user to select a Google Account and ask for consent to share their data
     // when establishing a new session.
     tokenClient.requestAccessToken({ prompt: 'consent' });
