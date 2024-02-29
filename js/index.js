@@ -73,14 +73,14 @@ async function agregarNuevoTurno(turno) {
 
 async function subirImagenAImgur(imagen) {
     try {
-        const clientId = 'TU_CLIENT_ID'; // Reemplazar con tu Client ID de Imgur
+        const clientId = '042eea9e896a4f1'; // Reemplazar con tu Client ID de Imgur
         const formData = new FormData();
         formData.append('image', imagen);
 
         const response = await fetch('https://api.imgur.com/3/image', {
             method: 'POST',
             headers: {
-                'Authorization': `Client-ID ${d2cb3ec841aa696}`
+                'Authorization': `Client-ID ${clientId}`
             },
             body: formData
         });
@@ -173,4 +173,4 @@ nuevoTurnoForm.addEventListener("submit", async (event) => {
     await agregarNuevoTurno(nuevoTurno); // Llama a la función para agregar el nuevo turno
     nuevoTurnoForm.classList.toggle("escondido");
     formularioTurno.reset(); // Reinicia el formulario después de agregar el turno
-  });
+});
