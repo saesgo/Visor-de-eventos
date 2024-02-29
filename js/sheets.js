@@ -4,7 +4,7 @@ async function getTurnos() {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A2:H', // Ajusta el rango para incluir la columna de imagen (H)
+      range: 'Turnos!A2:G', 
     });
 
     const range = response.result;
@@ -47,7 +47,7 @@ async function editTurno(id, contenido) {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.update({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: `Turnos!A2:H`, // Ajusta el rango para incluir la columna de imagen (H)
+      range: `Turnos!A2:G`, 
       values: [update],
       valueInputOption: "USER_ENTERED"
     });
@@ -63,7 +63,7 @@ async function addTurno(turno) {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.append({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A:H', // Ajusta el rango para incluir la columna de imagen (H)
+      range: 'Turnos!A:G', 
       valueInputOption: 'USER_ENTERED',
       resource: {
         values: [[
@@ -89,7 +89,7 @@ async function getLastId() {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A:E', // Ajusta el rango para incluir la columna de imagen (H)
+      range: 'Turnos!A:G', 
     });
 
     const range = response.result;
