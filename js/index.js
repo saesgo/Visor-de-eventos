@@ -70,8 +70,7 @@ function createTarjeta(turno, index) {
     <p>ID: ${turno.id}</p>
     <p>Evaluador: ${turno.evaluador}</p>
     <p>Descripción : ${turno.descripcionProblema}</p>
-    <img src="${turno.imagen}" alt="Imagen del problema">
-    <blockquote class="imgur-embed-pub" lang="en" data-id="a/${turno.imagen}" data-context="false" ><a href="//imgur.com/a/${turno.imagen}"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+    <img src="https://imgur.com/a/${turno.imagen}" alt="Imagen del problema">
   `;
   nuevaTarjeta.addEventListener("click", () => actualizarDetalle(index));
   turnosContainer.appendChild(nuevaTarjeta);
