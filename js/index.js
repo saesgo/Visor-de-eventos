@@ -34,32 +34,6 @@ async function getUltimoID() {
   }
 }
 
-async function agregarNuevoTurno(turno) {
-  const id = await getUltimoID(); // Obtiene el ID automáticamente
-  turno.id = id.toString(); // Convierte el ID a cadena de texto y lo asigna al turno
-  const update = [
-    turno.evaluador,
-    turno.tituloProblema,
-    turno.descripcionProblema,
-    turno.imagen
-  ];
-
-  try {
-    const response = await gapi.client.sheets.spreadsheets.values.append({
-      spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: `Turnos!A:E`,
-      valueInputOption: "USER_ENTERED",
-      insertDataOption: "INSERT_ROWS",
-      values: [update],
-    });
-
-    return response;
-  } catch (err) {
-    console.error(err);
-    return null;
-  }
-}
-
 function createTarjeta(turno, index) {
   const nuevaTarjeta = document.createElement("div");
   nuevaTarjeta.classList = "tarjeta";
@@ -114,6 +88,36 @@ async function marcarTerminado(i) {
     await actualizarTarjetas();
     detalleContainer.classList.toggle("escondido", true);
     comentarioElement.value = "";
+  }
+}
+
+function mostrarBotonAgregarEvento() {
+  agregarTurno.style.visibility = "visible"; // Muestra el botón "Agregar Nuevo evento"
+}
+
+async function agregarNuevoTurno(turno) {
+  const id = await getUltimoID(); // Obtiene el ID automáticamente
+  turno.id = id.toString(); // Convierte el ID a cadena de texto y lo asigna al turno
+  const update = [
+    turno.evaluador,
+    turno.tituloProblema,
+    turno.descripcionProblema,
+    turno.imagen
+  ];
+
+  try {
+    const response = await gapi.client.sheets.spreadsheets.values.append({
+      spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
+      range: `Turnos!A:E`,
+      valueInputOption: "USER_ENTERED",
+      insertDataOption: "INSERT_ROWS",
+      values: [update],
+    });
+
+    return response;
+  } catch (err) {
+    console.error(err);
+    return null;
   }
 }
 
