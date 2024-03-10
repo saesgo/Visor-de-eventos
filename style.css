@@ -40,6 +40,10 @@ button{
   width: 95vw;
 }
 
+#nuevoTurnoForm {
+  display: none;
+}
+
 .tarjeta {
   border: 1px solid var(--color-fondo);
   width: 250px; /* Aumentar el ancho de cada tarjeta */

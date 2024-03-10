@@ -64,6 +64,7 @@ function gisLoaded() {
 function maybeEnableButtons() {
   if (gapiInited && gisInited) {
     document.getElementById('authorize_button').style.visibility = 'visible';
+    document.getElementById('nuevoTurnoForm').style.display = 'block'; // Mostrar el formulario después de iniciar sesión
   }
 }
 
