@@ -69,10 +69,11 @@ function actualizarDetalle(index) {
 }
 
 finalizar.addEventListener("click", () => marcarTerminado(indiceSeleccionado));
+
 async function marcarTerminado(i) {
+  const filaAEditar = 5; // Define filaAEditar según sea necesario
   const updateTurno = turnos[i];
   updateTurno.comentario = comentarioElement.value;
-  const filaAEditar = 4; // Define filaAEditar según sea necesario
   const res = await editTurno(updateTurno.id, updateTurno, filaAEditar);
   if (res.status === 200) {
     turnos = turnos.filter(turno => turno.id !== updateTurno.id);
@@ -89,10 +90,6 @@ async function marcarTerminado(i) {
     detalleContainer.classList.toggle("escondido", true);
     comentarioElement.value = "";
   }
-}
-
-function mostrarBotonAgregarEvento() {
-  agregarTurno.style.visibility = "visible"; // Muestra el botón "Agregar Nuevo evento"
 }
 
 async function agregarNuevoTurno(turno) {
