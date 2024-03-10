@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('authorize_button').style.visibility = 'hidden';
   document.getElementById('signout_button').style.visibility = 'hidden';
+  document.getElementById('nuevoTurnoForm').style.display = 'none'; // Cambié 'visible' a 'none'
 });
 
 function gapiLoaded() {
@@ -46,7 +47,7 @@ function maybeEnableButtons() {
   if (gapiInited && gisInited) {
     document.getElementById('authorize_button').style.visibility = 'visible';
     document.getElementById('signout_button').style.visibility = 'visible';
-    document.getElementById('nuevoTurnoForm').style.display = 'visible';
+    document.getElementById('nuevoTurnoForm').style.display = 'block'; // Cambié 'visible' a 'block'
   }
 }
 
