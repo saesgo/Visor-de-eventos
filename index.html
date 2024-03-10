@@ -29,18 +29,6 @@
             <button id="finalizar">Marcar finalizado</button>
         </div>
     </main>
-
-    <button id="authorize_button" style="visibility: hidden;" onclick="handleAuthClick()">Iniciar sesión</button>
-    <button id="signout_button" style="visibility: hidden;" onclick="handleSignoutClick()">Cerrar sesión</button>
-
-    <script async defer src="https://apis.google.com/js/api.js" id="gapi"></script>
-    <script async defer src="https://accounts.google.com/gsi/client" id="gis"></script>
-    <script async defer src="js/credenciales.js"></script>
-    <script async defer src="js/auth.js"></script>
-    <script async defer src="js/sheets.js"></script>
-    <script async defer src="js/index.js"></script>
-    <script async defer src="js/imgur.js"></script>
-
     <!-- Formulario para agregar un nuevo evento -->
     <div id="nuevoTurnoForm">
         <h2>Agregar Nuevo evento</h2>
@@ -56,6 +44,18 @@
             <button type="submit" id="agregarTurno">Agregar</button>
         </form>
     </div>
+
+    <button id="authorize_button" style="visibility: hidden;" onclick="handleAuthClick()">Iniciar sesión</button>
+    <button id="signout_button" style="visibility: hidden;" onclick="handleSignoutClick()">Cerrar sesión</button>
+
+    <script async defer src="https://apis.google.com/js/api.js" id="gapi"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" id="gis"></script>
+    <script async defer src="js/credenciales.js"></script>
+    <script async defer src="js/auth.js"></script>
+    <script async defer src="js/sheets.js"></script>
+    <script async defer src="js/index.js"></script>
+    <script async defer src="js/imgur.js"></script>
+
 </body>
 
 </html>
