@@ -6,14 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="js/credenciales.js"></script>
-
-    <title>Document</title>
-    <script
-			  src="https://code.jquery.com/jquery-3.7.1.js"
-			  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-			  crossorigin="anonymous"></script>
-		
+    <title>Casos Sistema de Recall</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -35,34 +30,29 @@
             <img id="imagen" src="" alt="Imagen del problema">
             <button id="finalizar">Marcar finalizado</button>
         </div>
+        <!-- Formulario para agregar un nuevo evento -->
+        <div id="nuevoTurnoForm" class="escondido">
+            <h2>Agregar Nuevo evento</h2>
+            <form id="formularioTurno">
+                <label for="tituloProblema">Título del problema:</label>
+                <input type="text" id="tituloProblema" name="tituloProblema" required>
+                <label for="evaluador">Evaluador:</label>
+                <input type="text" id="evaluador" name="evaluador" required>
+                <label for="descripcionProblema">Descripción del problema:</label>
+                <textarea id="descripcionProblema" name="descripcionProblema" rows="4" required></textarea>
+                <label for="imagen">URL de la imagen:</label>
+                <input type="text" id="imagen" name="imagen" required>
+                <button type="submit">Agregar</button>
+            </form>
+        </div>
     </main>
-</body>
-</html>
 
-
-	
-<!-- Formulario para agregar un nuevo evento -->
-	<div id="nuevoTurnoForm" class="escondido">
-	<h2>Agregar Nuevo evento</h2>
-	<form id="formularioTurno">
-		<label for="tituloProblema">Título del problema:</label>
-		<input type="text" id="tituloProblema" name="tituloProblema" required>
-		<label for="evaluador">Evaluador:</label>
-		<input type="text" id="evaluador" name="evaluador" required>
-		<label for="descripcionProblema">Descripción del problema:</label>
-		<textarea id="descripcionProblema" name="descripcionProblema" rows="4" required></textarea>
-		<label for="imagen">URL de la imagen:</label>
-		<input type="text" id="imagen" name="imagen" required>
-		<button type="submit">Agregar</button>
-	</form>
-	
-	
-	</div>
-
+    <!-- Scripts -->
     <script async defer src="https://apis.google.com/js/api.js" id="gapi"></script>
     <script async defer src="https://accounts.google.com/gsi/client" id="gis"></script>
-    <script async defer src="js/auth.js"></script>
-    <script async defer src="js/sheets.js"></script>
+    <script src="js/credenciales.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/sheets.js"></script>
     <script src="js/index.js"></script>
     <script src="js/imgur.js"></script>
 </body>
