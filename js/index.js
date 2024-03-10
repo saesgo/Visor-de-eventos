@@ -81,8 +81,8 @@ function actualizarTarjetas() {
 }
 
 function actualizarDetalle(index) {
+  indiceSeleccionado = index; // Define el índice seleccionado aquí
   if (indiceSeleccionado !== undefined) turnosContainer.children[indiceSeleccionado].classList.toggle("seleccionado", false);
-  clienteElement.innerText = turnos[index].cliente;
   idElement.innerText = turnos[index].id;
   nombreEvaluadorElement.innerText = turnos[index].evaluador;
   tituloProblemaElement.innerText = turnos[index].tituloProblema;
