@@ -117,3 +117,22 @@ async function agregarNuevoTurno(turno) {
     return null;
   }
 }
+
+agregarTurno.addEventListener("click", () => {
+  nuevoTurnoForm.classList.toggle("escondido");
+});
+
+nuevoTurnoForm.addEventListener("submit", async (event) => {
+  event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+
+  const formData = new FormData(formularioTurno);
+  const nuevoTurno = {};
+
+  formData.forEach((value, key) => {
+      nuevoTurno[key] = value;
+  });
+
+  await agregarNuevoTurno(nuevoTurno); // Llama a la función para agregar el nuevo turno
+  nuevoTurnoForm.classList.toggle("escondido");
+  formularioTurno.reset(); // Reinicia el formulario después de agregar el turno
+});
