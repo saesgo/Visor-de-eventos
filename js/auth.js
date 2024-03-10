@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('authorize_button').style.visibility = 'hidden';
   document.getElementById('signout_button').style.visibility = 'hidden';
-  document.getElementById('nuevoTurnoForm').style.display = 'none';
+  document.getElementById('nuevoTurnoForm').style.visibility = 'hidden';
 });
 
 function gapiLoaded() {
