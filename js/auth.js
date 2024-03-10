@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('authorize_button').style.visibility = 'hidden';
   document.getElementById('signout_button').style.visibility = 'hidden';
+  document.getElementById('agregarTurno').style.display = 'none'; // Ocultar el botón de "Agregar Turno"
 });
 
 /**
