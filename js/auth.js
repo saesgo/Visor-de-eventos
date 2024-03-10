@@ -58,10 +58,10 @@ function handleAuthClick() {
       return;
     }
     document.getElementById('signout_button').style.visibility = 'visible';
-    document.getElementById('authorize_button').innerText = 'Refresh';
+    document.getElementById('authorize_button').innerText = 'Recargar';
     await getTurnos();
     actualizarTarjetas();
-    document.getElementById('agregarTurno').style.display = 'block';
+    document.getElementById('agregarTurno').style.display = 'visible';
   };
 
   if (gapi.client.getToken() === null) {
