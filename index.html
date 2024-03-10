@@ -28,22 +28,6 @@
             <img id="imagen" src="" alt="Imagen del problema">
             <button id="finalizar">Marcar finalizado</button>
         </div>
-
-        <!-- Formulario para agregar un nuevo evento -->
-        <div id="nuevoTurnoForm" class="escondido">
-            <h2>Agregar Nuevo evento</h2>
-            <form id="formularioTurno">
-                <label for="tituloProblemaNuevo">Título del problema:</label>
-                <input type="text" id="tituloProblemaNuevo" name="tituloProblema" required>
-                <label for="evaluadorNuevo">Evaluador:</label>
-                <input type="text" id="evaluadorNuevo" name="evaluador" required>
-                <label for="descripcionProblemaNuevo">Descripción del problema:</label>
-                <textarea id="descripcionProblemaNuevo" name="descripcionProblema" rows="4" required></textarea>
-                <label for="imagenURLNuevo">URL de la imagen:</label>
-                <input type="text" id="imagenURLNuevo" name="imagen" required>
-                <button type="submit">Agregar</button>
-            </form>
-        </div>
     </main>
 
     <button id="authorize_button" style="visibility: hidden;" onclick="handleAuthClick()">Iniciar sesión</button>
@@ -56,6 +40,22 @@
     <script async defer src="js/sheets.js"></script>
     <script async defer src="js/index.js"></script>
     <script async defer src="js/imgur.js"></script>
+
+    <!-- Formulario para agregar un nuevo evento -->
+    <div id="nuevoTurnoForm" class="escondido">
+        <h2>Agregar Nuevo evento</h2>
+        <form id="formularioTurno">
+            <label for="tituloProblemaNuevo">Título del problema:</label>
+            <input type="text" id="tituloProblemaNuevo" name="tituloProblema" required>
+            <label for="evaluadorNuevo">Evaluador:</label>
+            <input type="text" id="evaluadorNuevo" name="evaluador" required>
+            <label for="descripcionProblemaNuevo">Descripción del problema:</label>
+            <textarea id="descripcionProblemaNuevo" name="descripcionProblema" rows="4" required></textarea>
+            <label for="imagenURLNuevo">URL de la imagen:</label>
+            <input type="text" id="imagenURLNuevo" name="imagen" required>
+            <button type="submit" id="agregarTurno">Agregar</button>
+        </form>
+    </div>
 </body>
 
 </html>
