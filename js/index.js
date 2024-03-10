@@ -8,7 +8,7 @@ const tituloProblemaElement = document.getElementById("tituloProblema");
 const descripcionProblemaElement = document.getElementById("descripcionProblema");
 const imagenElement = document.getElementById("imagen");
 const comentarioElement = document.getElementById("comentario");
-const agregarTurnoButton = document.getElementById("agregarTurnoButton");
+const agregarTurno = document.getElementById("agregarTurno");
 const nuevoTurnoForm = document.getElementById("nuevoTurnoForm");
 const formularioTurno = document.getElementById("formularioTurno");
 
@@ -117,7 +117,7 @@ async function marcarTerminado(i) {
   }
 }
 
-agregarTurnoButton.addEventListener("click", () => {
+agregarTurno.addEventListener("click", () => {
   nuevoTurnoForm.classList.toggle("escondido");
 });
 
