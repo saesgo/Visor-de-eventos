@@ -132,7 +132,4 @@ nuevoTurnoForm.addEventListener("submit", async (event) => {
       nuevoTurno[key] = value;
   });
 
-  await agregarNuevoTurno(nuevoTurno); // Llama a la función para agregar el nuevo turno
-  nuevoTurnoForm.classList.toggle("escondido");
-  formularioTurno.reset(); // Reinicia el formulario después de agregar el turno
 });

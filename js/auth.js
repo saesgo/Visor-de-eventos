@@ -78,6 +78,5 @@ function handleSignoutClick() {
     document.getElementById('content').innerText = '';
     document.getElementById('authorize_button').innerText = 'Authorize';
     document.getElementById('signout_button').style.visibility = 'hidden';
-    document.getElementById('agregarTurno').style.display = 'none';
   }
 }
