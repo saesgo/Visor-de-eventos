@@ -24,6 +24,7 @@ async function getTurnos() {
         imagen: fila[4],
         fecha: fila[5],
         comentario: fila[6]
+        fila: index + 2 // +2 porque el rango comienza en la fila 2
       };
       turnos.push(nuevoTurno);
     });
@@ -63,7 +64,7 @@ async function addTurno(turno) {
   try {
       const response = await gapi.client.sheets.spreadsheets.values.append({
           spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-          range: 'Turnos!B:G', // Cambiar el rango para comenzar desde la columna B
+          range: 'Turnos!B:G',
           valueInputOption: 'USER_ENTERED',
           resource: {
               values: [[
@@ -107,27 +108,25 @@ async function getLastId() {
 async function marcarTerminado(i) {
   const updateTurno = turnos[i];
   updateTurno.comentario = comentarioElement.value;
-  const filaAEditar = 5; // Define filaAEditar según sea necesario
 
   try {
-    const res = await editTurno(updateTurno.id, updateTurno, filaAEditar); // Pasar filaAEditar como parámetro
+      const res = await editTurno(updateTurno.id, updateTurno, updateTurno.fila);
 
-    if (res && res.status === 200) {
-      turnos = turnos.filter(turno => turno.id !== updateTurno.id);
-      indiceSeleccionado = 0;
+      if (res && res.status === 200) {
+          turnos = turnos.filter(turno => turno.id !== updateTurno.id);
+          indiceSeleccionado = 0;
 
-      // Ocultar las tarjetas marcadas
-      Array.from(turnosContainer.children).forEach((tarjeta, index) => {
-        if (index === indiceSeleccionado) {
-          tarjeta.classList.toggle("seleccionado", false);
-        }
-      });
+          Array.from(turnosContainer.children).forEach((tarjeta, index) => {
+              if (index === indiceSeleccionado) {
+                  tarjeta.classList.toggle("seleccionado", false);
+              }
+          });
 
-      await actualizarTarjetas();
-      detalleContainer.classList.toggle("escondido", true);
-      comentarioElement.value = "";
-    }
+          await actualizarTarjetas();
+          detalleContainer.classList.toggle("escondido", true);
+          comentarioElement.value = "";
+      }
   } catch (err) {
-    console.error(err);
+      console.error(err);
   }
 }

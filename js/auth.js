@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('authorize_button').style.visibility = 'hidden';
   document.getElementById('signout_button').style.visibility = 'hidden';
-  document.getElementById('nuevoTurnoForm').style.display = 'none'; // Cambié 'visible' a 'none'
+  document.getElementById('nuevoTurnoForm').style.display = 'none';
 });
 
 function gapiLoaded() {
@@ -47,7 +47,7 @@ function maybeEnableButtons() {
   if (gapiInited && gisInited) {
     document.getElementById('authorize_button').style.visibility = 'visible';
     document.getElementById('signout_button').style.visibility = 'visible';
-    document.getElementById('nuevoTurnoForm').style.display = 'block'; // Cambié 'visible' a 'block'
+    document.getElementById('nuevoTurnoForm').style.display = 'block'; 
   }
 }
 
@@ -62,7 +62,6 @@ function handleAuthClick() {
     await getTurnos();
     actualizarTarjetas();
 
-    // Mostrar el formulario después de que el usuario haya iniciado sesión correctamente
     document.getElementById('nuevoTurnoForm').classList.remove('escondido');
   };
 
