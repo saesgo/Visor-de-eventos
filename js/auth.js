@@ -82,8 +82,9 @@ function handleAuthClick() {
     document.getElementById('authorize_button').innerText = 'Refresh';
     await getTurnos();
     actualizarTarjetas();
-    document.getElementById('agregarTurno').style.display = 'block'; // Mostrar el botón de "Agregar Turno"
+    document.getElementById('agregarTurno').style.display = 'block'; // Mostrar el botón de "Agregar Turno" después de iniciar sesión
   };
+}
 
   if (gapi.client.getToken() === null) {
     // Prompt the user to select a Google Account and ask for consent to share their data
