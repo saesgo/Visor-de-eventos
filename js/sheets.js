@@ -15,7 +15,7 @@ async function getTurnos() {
 
     turnos = [];
     range.values.forEach((fila) => {
-      if (isNaN(parseInt(fila[0])) || fila[7] !== undefined) return;
+      if (isNaN(parseInt(fila[0])) || fila[6] !== undefined) return;
       const nuevoTurno = {
         id: fila[0],
         evaluador: fila[1], 
@@ -104,5 +104,33 @@ async function getLastId() {
   } catch (err) {
       console.error(err);
       return 0; // En caso de error, devolvemos 0 como el último ID
+  }
+}
+
+async function marcarTerminado(i) {
+  const updateTurno = turnos[i];
+  updateTurno.comentario = comentarioElement.value;
+  const filaAEditar = 5; // Define filaAEditar según sea necesario
+
+  try {
+    const res = await editTurno(updateTurno.id, updateTurno, filaAEditar); // Pasar filaAEditar como parámetro
+
+    if (res && res.status === 200) {
+      turnos = turnos.filter(turno => turno.id !== updateTurno.id);
+      indiceSeleccionado = 0;
+
+      // Ocultar las tarjetas marcadas
+      Array.from(turnosContainer.children).forEach((tarjeta, index) => {
+        if (index === indiceSeleccionado) {
+          tarjeta.classList.toggle("seleccionado", false);
+        }
+      });
+
+      await actualizarTarjetas();
+      detalleContainer.classList.toggle("escondido", true);
+      comentarioElement.value = "";
+    }
+  } catch (err) {
+    console.error(err);
   }
 }
