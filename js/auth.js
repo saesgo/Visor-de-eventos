@@ -60,7 +60,6 @@ function handleAuthClick() {
     document.getElementById('authorize_button').innerText = 'Recargar';
     await getTurnos();
     actualizarTarjetas();
-    document.getElementById('agregarTurno').style.display = 'visible';
   };
 
   if (gapi.client.getToken() === null) {
