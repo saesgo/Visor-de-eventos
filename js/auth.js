@@ -43,14 +43,6 @@ function gisLoaded() {
   maybeEnableButtons();
 }
 
-function maybeEnableButtons() {
-  if (gapiInited && gisInited) {
-    document.getElementById('authorize_button').style.visibility = 'visible';
-    document.getElementById('signout_button').style.visibility = 'visible';
-    document.getElementById('nuevoTurnoForm').style.display = 'visible';
-  }
-}
-
 function handleAuthClick() {
   tokenClient.callback = async (resp) => {
     if (resp.error !== undefined) {
@@ -68,6 +60,14 @@ function handleAuthClick() {
     tokenClient.requestAccessToken({ prompt: 'consent' });
   } else {
     tokenClient.requestAccessToken({ prompt: '' });
+  }
+}
+
+function maybeEnableButtons() {
+  if (gapiInited && gisInited) {
+    document.getElementById('authorize_button').style.visibility = 'visible';
+    document.getElementById('signout_button').style.visibility = 'visible';
+    document.getElementById('nuevoTurnoForm').style.display = 'visible';
   }
 }
 
