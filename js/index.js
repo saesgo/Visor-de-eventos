@@ -8,7 +8,7 @@ const tituloProblemaElement = document.getElementById("tituloProblema");
 const descripcionProblemaElement = document.getElementById("descripcionProblema");
 const imagenElement = document.getElementById("imagen");
 const comentarioElement = document.getElementById("comentario");
-const agregarTurnoButton = document.getElementById("agregarTurno");
+const agregarTurnoButton = document.getElementById("agregarTurnoButton");
 const nuevoTurnoForm = document.getElementById("nuevoTurnoForm");
 const formularioTurno = document.getElementById("formularioTurno");
 
