@@ -12,13 +12,14 @@
 <body>
     <header>
         <h1>Casos Sistema de Recall</h1>
-        <h2>Elaborado por: Santiago Escudero Gomez </h2>   
+        <h2>Elaborado por: Santiago Escudero Gomez</h2>
     </header>
     <button id="authorize_button" style="visibility: hidden;" onclick="handleAuthClick()">Iniciar sesión</button>
     <button id="signout_button" style="visibility: hidden;" onclick="handleSignoutClick()">Cerrar sesión</button>
     <main>
         <div id="turnosContainer"></div>
         <div id="detalleContainer" class="escondido">
+            <h2 id="cliente">Nombre</h2>
             <p>ID: <span id="id" contenteditable="true"></span></p>
             <p>Nombre del evaluador: <span id="nombreEvaluador" contenteditable="true"></span></p>
             <p>Titulo del problema: <span id="tituloProblema" contenteditable="true"></span></p>
@@ -30,9 +31,8 @@
             <img id="imagen" src="" alt="Imagen del problema">
             <button id="finalizar">Marcar finalizado</button>
         </div>
-            <!-- Formulario para agregar un nuevo evento -->
-        <div id="nuevoTurnoForm">
-        <div id="nuevoTurnoForm" class="escondido">    
+        <!-- Formulario para agregar un nuevo evento -->
+        <div id="nuevoTurnoForm" class="escondido">
             <h2>Agregar Nuevo evento</h2>
             <form id="formularioTurno">
                 <label for="tituloProblemaNuevo">Título del problema:</label>
