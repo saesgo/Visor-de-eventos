@@ -8,16 +8,10 @@ const tituloProblemaElement = document.getElementById("tituloProblema");
 const descripcionProblemaElement = document.getElementById("descripcionProblema");
 const imagenElement = document.getElementById("imagen");
 const comentarioElement = document.getElementById("comentario");
-const agregarTurno = document.getElementById("agregarTurno"); // Agregar esta línea
+const finalizar = document.getElementById("finalizar");
+const agregarTurno = document.getElementById("agregarTurno"); // Añadir esta línea
 const nuevoTurnoForm = document.getElementById("nuevoTurnoForm");
 const formularioTurno = document.getElementById("formularioTurno");
-
-// Verificar si agregarTurno existe antes de agregar el event listener
-if (agregarTurno) {
-  agregarTurno.addEventListener("click", () => {
-    nuevoTurnoForm.classList.toggle("escondido");
-  });
-}
 
 async function getUltimoID() {
   try {
@@ -107,7 +101,7 @@ async function marcarTerminado(i) {
   updateTurno.comentario = comentarioElement.value;
   const filaAEditar = 0; // Define filaAEditar según sea necesario
   const res = await editTurno(updateTurno.id, updateTurno, filaAEditar);
-    if (res.status === 200) {
+  if (res.status === 200) {
     turnos = turnos.filter(turno => turno.id !== updateTurno.id);
     indiceSeleccionado = 0;
 
