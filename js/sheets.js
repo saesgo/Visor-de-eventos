@@ -23,8 +23,7 @@ async function getTurnos() {
         descripcionProblema: fila[3], 
         imagen: fila[4],
         fecha: fila[5],
-        comentario: fila[6]
-        fila: index + 2 // +2 porque el rango comienza en la fila 2
+        comentario: fila[6],
       };
       turnos.push(nuevoTurno);
     });
