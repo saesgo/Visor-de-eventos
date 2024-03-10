@@ -15,9 +15,8 @@
         <h2>Elaborado por: Santiago Escudero Gomez </h2>   
     </header>
     <button id="authorize_button" style="visibility: hidden;" onclick="handleAuthClick()">Iniciar sesión</button>
+    <button id="signout_button" style="visibility: hidden;" onclick="handleSignoutClick()">Cerrar sesión</button>
     <main>
-        
-        <button id="signout_button" style="visibility: hidden;" onclick="handleSignoutClick()">Cerrar sesión</button>
         <div id="turnosContainer"></div>
         <div id="detalleContainer" class="escondido">
             <h2 id="cliente">Nombre</h2>
@@ -34,6 +33,7 @@
         </div>
             <!-- Formulario para agregar un nuevo evento -->
         <div id="nuevoTurnoForm">
+        <div id="nuevoTurnoForm" class="escondido">    
             <h2>Agregar Nuevo evento</h2>
             <form id="formularioTurno">
                 <label for="tituloProblemaNuevo">Título del problema:</label>
