@@ -13,24 +13,31 @@ const agregarTurno = document.getElementById("agregarTurno");
 const nuevoTurnoForm = document.getElementById("nuevoTurnoForm");
 const formularioTurno = document.getElementById("formularioTurno");
 
-async function getUltimoID() {
+// Agrega la función init
+async function init() {
+  // Inicializa la aplicación después de que el usuario haya iniciado sesión
+  const detailContainer = document.getElementById('detalleContainer');
+  const nuevoTurnoForm = document.getElementById('nuevoTurnoForm');
+ // Ocultar botones de iniciar/cerrar sesión y mostrar formulario
+  document.getElementById('authorize_button').style.display = 'none';
+  document.getElementById('signout_button').style.display = 'none';
+  nuevoTurnoForm.style.display = 'block';
+  detailContainer.style.display = 'block';
+}
+  
+async function getUltimoID(spreadsheetId, range) {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.get({
-      spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A:A',
+      spreadsheetId,
+      range,
     });
 
-    const range = response.result;
-    if (!range || !range.values || range.values.length === 0) {
-      return 1; // Si no hay datos, devuelve 1 como primer ID
-    }
-
-    // Obtiene el último ID en la última fila
-    const ultimoID = parseInt(range.values[range.values.length - 1][0]);
-    return ultimoID + 1; // Devuelve el siguiente ID
+    const { values } = response.result;
+    const ultimoID = +values?.[values.length - 1]?.[0] ?? 0;
+    return ultimoID + 1;
   } catch (err) {
-    console.error(err);
-    return null;
+    console.error(`Error in getUltimoID: ${err.message}`);
+    throw new Error(`Failed to get the last ID: ${err.message}`);
   }
 }
 
@@ -81,9 +88,9 @@ async function marcarTerminado(i) {
 
     // Ocultar las tarjetas marcadas
     Array.from(turnosContainer.children).forEach((tarjeta, index) => {
-        if (index === indiceSeleccionado) {
-            tarjeta.classList.toggle("seleccionado", false);
-        }
+      if (index === indiceSeleccionado) {
+        tarjeta.classList.toggle("seleccionado", false);
+      }
     });
 
     await actualizarTarjetas();
@@ -129,7 +136,7 @@ nuevoTurnoForm.addEventListener("submit", async (event) => {
   const nuevoTurno = {};
 
   formData.forEach((value, key) => {
-      nuevoTurno[key] = value;
+    nuevoTurno[key] = value;
   });
 
   await agregarNuevoTurno(nuevoTurno); // Llama a la función para agregar el nuevo turno
