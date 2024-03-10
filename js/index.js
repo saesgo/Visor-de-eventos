@@ -10,7 +10,6 @@ const imagenElement = document.getElementById("imagen");
 const comentarioElement = document.getElementById("comentario");
 const finalizar = document.getElementById("finalizar");
 const agregarTurno = document.getElementById("agregarTurno");
-agregarTurno.classList.remove("escondido");
 const nuevoTurnoForm = document.getElementById("nuevoTurnoForm");
 const formularioTurno = document.getElementById("formularioTurno");
 
@@ -118,17 +117,3 @@ async function agregarNuevoTurno(turno) {
     return null;
   }
 }
-
-agregarTurno.addEventListener("click", () => nuevoTurnoForm.classList.toggle("escondido"));
-
-nuevoTurnoForm.addEventListener("submit", async (event) => {
-  event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
-
-  const formData = new FormData(formularioTurno);
-  const nuevoTurno = {};
-
-  formData.forEach((value, key) => {
-      nuevoTurno[key] = value;
-  });
-
-});
