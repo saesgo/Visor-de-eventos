@@ -39,7 +39,6 @@ async function agregarNuevoTurno(turno) {
 
   const update = [
     turno.id,
-    turno.cliente,
     turno.evaluador,
     turno.tituloProblema,
     turno.descripcionProblema,
