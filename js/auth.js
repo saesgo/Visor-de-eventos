@@ -59,9 +59,11 @@ function handleAuthClick() {
     }
     document.getElementById('signout_button').style.visibility = 'visible';
     document.getElementById('authorize_button').innerText = 'Recargar';
-    document.getElementById('agregarTurno').style.visibility = 'visible'; // Mostrar el botón de "Agregar Evento"
     await getTurnos();
     actualizarTarjetas();
+
+    // Mostrar el botón de "Agregar Evento" después de que el usuario haya iniciado sesión correctamente
+    document.getElementById('agregarTurno').style.visibility = 'visible';
   };
 
   if (gapi.client.getToken() === null) {
