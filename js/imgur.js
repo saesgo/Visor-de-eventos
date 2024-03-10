@@ -22,7 +22,7 @@ $.ajax(settings).done(function (response) {
 });
 
 var form = new FormData();
-form.append("refresh_token", "{{e600474ca163ca9bcb77b60c5c30c0b1517a94dd}}");
+form.append("refresh_token", "{{137351013aa16610fdec359bc6f36fa5e957caaa}}");
 form.append("client_id", "{{ae16a4008387500}}");
 form.append("client_secret", "{{0d1eaed0da8d151b2a7593ddc49e32778f999e3b}}");
 form.append("grant_type", "refresh_token");
