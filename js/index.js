@@ -16,7 +16,7 @@ async function getUltimoID() {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A:E',
+      range: 'Turnos!A:A',
     });
 
     const range = response.result;
@@ -36,7 +36,6 @@ async function getUltimoID() {
 async function agregarNuevoTurno(turno) {
   const id = await getUltimoID(); // Obtiene el ID automáticamente
   turno.id = id.toString(); // Convierte el ID a cadena de texto y lo asigna al turno
-
   const update = [
     turno.evaluador,
     turno.tituloProblema,
