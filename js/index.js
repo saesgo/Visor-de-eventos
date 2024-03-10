@@ -71,7 +71,7 @@ function actualizarDetalle(index) {
 finalizar.addEventListener("click", () => marcarTerminado(indiceSeleccionado));
 
 async function marcarTerminado(i) {
-  const filaAEditar = 5; // Define filaAEditar según sea necesario
+  const filaAEditar = 0; // Define filaAEditar según sea necesario
   const updateTurno = turnos[i];
   updateTurno.comentario = comentarioElement.value;
   const res = await editTurno(updateTurno.id, updateTurno, filaAEditar);
