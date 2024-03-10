@@ -74,8 +74,8 @@ button {
 }
 
 #detalleContainer div {
-  margin-bottom: 10;
-  padding:5px;
+  margin-bottom: 10px; /* Se corrigió la sintaxis del margin-bottom */
+  padding: 5px; /* Se corrigió la sintaxis del padding */
 }
 
 .escondido {
@@ -88,7 +88,4 @@ footer {
 
 footer a {
   color: var(--color-texto);
-}
-.escondido {
-  display: none;
 }
