@@ -4,7 +4,7 @@ async function getTurnos() {
   try {
     const response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: 'Turnos!A2:G', // Rango corregido para incluir las cinco columnas
+      range: 'Turnos!A2:G', // Corregido el rango para incluir las cinco columnas
     });
 
     const range = response.result;
@@ -28,13 +28,12 @@ async function getTurnos() {
       turnos.push(nuevoTurno);
     });
     console.log(turnos);
-    } catch (err) {
+  } catch (err) {
     console.error(err);
   }
 }
 
-
-async function editTurno(id, contenido) {
+async function editTurno(id, contenido, filaAEditar) {
   const update = [
     contenido.id,
     contenido.evaluador,
@@ -45,12 +44,10 @@ async function editTurno(id, contenido) {
     contenido.comentario
   ];
 
-  
-
   try {
     const response = await gapi.client.sheets.spreadsheets.values.update({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-      range: `Turnos!A${filaAEditar}:G${filaAEditar}`, // Rango corregido para incluir las cinco columnas
+      range: `Turnos!A${filaAEditar}:G${filaAEditar}`, // Corregido el rango para incluir las cinco columnas
       values: [update],
       valueInputOption: "USER_ENTERED"
     });
