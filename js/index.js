@@ -9,7 +9,8 @@ const descripcionProblemaElement = document.getElementById("descripcionProblema"
 const imagenElement = document.getElementById("imagen");
 const comentarioElement = document.getElementById("comentario");
 const finalizar = document.getElementById("finalizar");
-const agregarTurno = document.getElementById("agregarTurno"); // Añadir esta línea
+const agregarTurno = document.getElementById("agregarTurno");
+agregarTurno.classList.remove("escondido");
 const nuevoTurnoForm = document.getElementById("nuevoTurnoForm");
 const formularioTurno = document.getElementById("formularioTurno");
 
