@@ -37,7 +37,6 @@ async function agregarNuevoTurno(turno) {
   const id = await getUltimoID(); // Obtiene el ID automáticamente
   turno.id = id.toString(); // Convierte el ID a cadena de texto y lo asigna al turno
   const update = [
-    turno.id,
     turno.evaluador,
     turno.tituloProblema,
     turno.descripcionProblema,
