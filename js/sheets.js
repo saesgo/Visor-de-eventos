@@ -70,7 +70,6 @@ async function addTurno(turno) {
           valueInputOption: 'USER_ENTERED',
           resource: {
               values: [[
-                  turno.cliente,
                   turno.evaluador,
                   turno.tituloProblema,
                   turno.descripcionProblema,
