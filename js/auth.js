@@ -1,8 +1,4 @@
-// Discovery doc URL for APIs used by the quickstart
 const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
-
-// Authorization scopes required by the API; multiple scopes can be
-// included, separated by spaces.
 const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
 
 let tokenClient;
@@ -15,23 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('authorize_button').style.visibility = 'hidden';
   document.getElementById('signout_button').style.visibility = 'hidden';
-  document.getElementById('agregarTurno').style.display = 'none'; // Ocultar el botón de "Agregar Turno"
+  document.getElementById('nuevoTurnoForm').style.display = 'none';
 });
 
-/**
- * Callback after api.js is loaded.
- */
 function gapiLoaded() {
   gapi.load('client', initializeGapiClient);
 }
 
-/**
- * Callback after the API client is loaded. Loads the
- * discovery doc to initialize the API.
- */
 async function initializeGapiClient() {
-  // Load credentials from JSON file
-  const credentialsPath = './credentials/arcane-footing-410615-6963d7a968fa.json'; // Adjust the path accordingly
+  const credentialsPath = './credentials/arcane-footing-410615-6963d7a968fa.json';
   const credentials = await fetch(credentialsPath).then(response => response.json());
 
   await gapi.client.init({
@@ -45,33 +33,24 @@ async function initializeGapiClient() {
   maybeEnableButtons();
 }
 
-/**
- * Callback after Google Identity Services are loaded.
- */
 function gisLoaded() {
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
     scope: SCOPES,
-    callback: '', // defined later
+    callback: '',
   });
   gisInited = true;
   maybeEnableButtons();
 }
 
-/**
- * Enables user interaction after all libraries are loaded.
- */
 function maybeEnableButtons() {
   if (gapiInited && gisInited) {
     document.getElementById('authorize_button').style.visibility = 'visible';
-    document.getElementById('signout_button').style.visibility = 'visible'; // Mostrar el botón de cerrar sesión
-    document.getElementById('nuevoTurnoForm').style.display = 'block'; // Mostrar el formulario después de iniciar sesión
+    document.getElementById('signout_button').style.visibility = 'visible';
+    document.getElementById('nuevoTurnoForm').style.display = 'block';
   }
 }
 
-/**
- *  Sign in the user upon button click.
- */
 function handleAuthClick() {
   tokenClient.callback = async (resp) => {
     if (resp.error !== undefined) {
@@ -82,23 +61,16 @@ function handleAuthClick() {
     document.getElementById('authorize_button').innerText = 'Refresh';
     await getTurnos();
     actualizarTarjetas();
-    document.getElementById('agregarTurno').style.display = 'block'; // Mostrar el botón de "Agregar Turno" después de iniciar sesión
+    document.getElementById('agregarTurno').style.display = 'block';
   };
-}
 
   if (gapi.client.getToken() === null) {
-    // Prompt the user to select a Google Account and ask for consent to share their data
-    // when establishing a new session.
     tokenClient.requestAccessToken({ prompt: 'consent' });
   } else {
-    // Skip display of account chooser and consent dialog for an existing session.
     tokenClient.requestAccessToken({ prompt: '' });
   }
 }
 
-/**
- *  Sign out the user upon button click.
- */
 function handleSignoutClick() {
   const token = gapi.client.getToken();
   if (token !== null) {
@@ -107,6 +79,6 @@ function handleSignoutClick() {
     document.getElementById('content').innerText = '';
     document.getElementById('authorize_button').innerText = 'Authorize';
     document.getElementById('signout_button').style.visibility = 'hidden';
-    document.getElementById('agregarTurno').style.display = 'none'; // Ocultar el botón de "Agregar Turno"
+    document.getElementById('agregarTurno').style.display = 'none';
   }
 }
