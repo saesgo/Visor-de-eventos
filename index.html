@@ -40,22 +40,21 @@
     <script async defer src="js/sheets.js"></script>
     <script async defer src="js/index.js"></script>
     <script async defer src="js/imgur.js"></script>
+
+    <!-- Formulario para agregar un nuevo evento -->
+    <div id="nuevoTurnoForm" class="escondido">
+        <h2>Agregar Nuevo evento</h2>
+        <form id="formularioTurno">
+            <label for="tituloProblema">Título del problema:</label>
+            <input type="text" id="tituloProblemaNuevo" name="tituloProblema" required>
+            <label for="evaluador">Evaluador:</label>
+            <input type="text" id="evaluadorNuevo" name="evaluador" required>
+            <label for="descripcionProblema">Descripción del problema:</label>
+            <textarea id="descripcionProblemaNuevo" name="descripcionProblema" rows="4" required></textarea>
+            <label for="imagen">URL de la imagen:</label>
+            <input type="text" id="imagenURLNuevo" name="imagen" required>
+            <button type="submit">Agregar</button>
+        </form>
+    </div>
 </body>
-
-<!-- Formulario para agregar un nuevo evento -->
-<div id="nuevoTurnoForm" class="escondido">
-    <h2>Agregar Nuevo evento</h2>
-    <form id="formularioTurno">
-        <label for="tituloProblema">Título del problema:</label>
-        <input type="text" id="tituloProblemaNuevo" name="tituloProblema" required>
-        <label for="evaluador">Evaluador:</label>
-        <input type="text" id="evaluadorNuevo" name="evaluador" required>
-        <label for="descripcionProblema">Descripción del problema:</label>
-        <textarea id="descripcionProblemaNuevo" name="descripcionProblema" rows="4" required></textarea>
-        <label for="imagen">URL de la imagen:</label>
-        <input type="text" id="imagenURLNuevo" name="imagen" required>
-        <button type="submit">Agregar</button>
-    </form>
-</div>
-
 </html>
