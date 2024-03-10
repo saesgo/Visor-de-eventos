@@ -15,7 +15,7 @@ async function getTurnos() {
 
     turnos = [];
     range.values.forEach((fila) => {
-      if (isNaN(parseInt(fila[0])) || fila[6] !== undefined) return;
+      if (isNaN(parseInt(fila[0])) || fila[7] !== undefined) return;
       const nuevoTurno = {
         id: fila[0],
         evaluador: fila[1], 
@@ -66,14 +66,11 @@ async function addTurno(turno) {
   try {
       const response = await gapi.client.sheets.spreadsheets.values.append({
           spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-          range: 'Turnos!A:E',
+          range: 'Turnos!B:B', // Cambiar el rango para comenzar desde la columna B
           valueInputOption: 'USER_ENTERED',
           resource: {
               values: [[
                   turno.evaluador,
-                  turno.tituloProblema,
-                  turno.descripcionProblema,
-                  turno.imagen
               ]]
           }
       });
@@ -88,7 +85,7 @@ async function getLastId() {
   try {
       const response = await gapi.client.sheets.spreadsheets.values.get({
           spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
-          range: 'Turnos!A:E', // Rango que abarca todas las columnas necesarias
+          range: 'Turnos!A:A', // Rango que abarca todas las columnas necesarias
       });
 
       const range = response.result;
