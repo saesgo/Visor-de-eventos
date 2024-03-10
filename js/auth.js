@@ -72,7 +72,8 @@ function maybeEnableButtons() {
 function handleAuthClick() {
   tokenClient.callback = async (resp) => {
     if (resp.error !== undefined) {
-      throw (resp);
+      console.error(resp.error);
+      return;
     }
     document.getElementById('signout_button').style.visibility = 'visible';
     document.getElementById('authorize_button').innerText = 'Refresh';
