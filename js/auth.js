@@ -62,8 +62,8 @@ function handleAuthClick() {
     await getTurnos();
     actualizarTarjetas();
 
-    // Mostrar el botón de "Agregar Evento" después de que el usuario haya iniciado sesión correctamente
-    document.getElementById('agregarTurno').style.visibility = 'visible';
+    // Mostrar el formulario después de que el usuario haya iniciado sesión correctamente
+    document.getElementById('nuevoTurnoForm').classList.remove('escondido');
   };
 
   if (gapi.client.getToken() === null) {
