@@ -8,9 +8,16 @@ const tituloProblemaElement = document.getElementById("tituloProblema");
 const descripcionProblemaElement = document.getElementById("descripcionProblema");
 const imagenElement = document.getElementById("imagen");
 const comentarioElement = document.getElementById("comentario");
-const agregarTurno = document.getElementById("agregarTurno");
+const agregarTurno = document.getElementById("agregarTurno"); // Agregar esta línea
 const nuevoTurnoForm = document.getElementById("nuevoTurnoForm");
 const formularioTurno = document.getElementById("formularioTurno");
+
+// Verificar si agregarTurno existe antes de agregar el event listener
+if (agregarTurno) {
+  agregarTurno.addEventListener("click", () => {
+    nuevoTurnoForm.classList.toggle("escondido");
+  });
+}
 
 async function getUltimoID() {
   try {
