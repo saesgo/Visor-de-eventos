@@ -89,3 +89,6 @@ footer {
 footer a {
   color: var(--color-texto);
 }
+.escondido {
+  display: none;
+}

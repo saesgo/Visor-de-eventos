@@ -118,9 +118,7 @@ async function agregarNuevoTurno(turno) {
   }
 }
 
-agregarTurno.addEventListener("click", () => {
-  nuevoTurnoForm.classList.toggle("escondido");
-});
+agregarTurno.addEventListener("click", () => nuevoTurnoForm.classList.toggle("escondido"));
 
 nuevoTurnoForm.addEventListener("submit", async (event) => {
   event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
