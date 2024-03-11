@@ -32,6 +32,11 @@ async function getUltimoID(spreadsheetId, range) {
       range,
     });
 
+    if (!response.result || !response.result.values || response.result.values.length === 0) {
+      console.warn("No se encontraron valores");
+      return 0;
+    }
+    
     const { values } = response.result;
     const ultimoID = +values?.[values.length - 1]?.[0] ?? 0;
     return ultimoID + 1;
