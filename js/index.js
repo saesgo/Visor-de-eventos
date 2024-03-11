@@ -45,11 +45,11 @@ function createTarjeta(turno, index) {
   const nuevaTarjeta = document.createElement("div");
   nuevaTarjeta.classList = "tarjeta";
   nuevaTarjeta.innerHTML = `
-    <p>Título : ${turno.tituloProblema}</p>
-    <p>ID: ${turno.id}</p>
-    <p>Evaluador: ${turno.evaluador}</p>
-    <p>Descripción : ${turno.descripcionProblema}</p>
-    <img src="https://imgur.com/a/${turno.imagen}" alt="Imagen del problema">
+      <p>Título : ${turno.tituloProblema}</p>
+      <p>ID: ${turno.id}</p>
+      <p>Evaluador: ${turno.evaluador}</p>
+      <p>Descripción : ${turno.descripcionProblema}</p>
+      <img src="${turno.imagen}" alt="Imagen del problema">
   `;
   nuevaTarjeta.addEventListener("click", () => actualizarDetalle(index));
   turnosContainer.appendChild(nuevaTarjeta);
@@ -143,3 +143,35 @@ nuevoTurnoForm.addEventListener("submit", async (event) => {
   nuevoTurnoForm.classList.toggle("escondido");
   formularioTurno.reset(); // Reinicia el formulario después de agregar el turno
 });
+
+document.getElementById("insertarImagen").addEventListener("change", async (event) => {
+  const file = event.target.files[0];
+  if (file) {
+      const imageURL = await subirImagenAImgur(file);
+      if (imageURL) {
+          document.getElementById("imagenURLNuevo").value = imageURL;
+          alert("La imagen se ha subido correctamente a Imgur.");
+      } else {
+          alert("Hubo un problema al subir la imagen a Imgur. Por favor, inténtalo de nuevo.");
+      }
+  }
+});
+
+async function subirImagenAImgur(file) {
+  try {
+      const formData = new FormData();
+      formData.append("image", file);
+      const response = await fetch("https://api.imgur.com/3/image", {
+          method: "POST",
+          headers: {
+              Authorization: "Client-ID {ae16a4008387500}", // Reemplaza con tu Client-ID de Imgur
+          },
+          body: formData
+      });
+      const data = await response.json();
+      return data.success ? data.data.link : null;
+  } catch (error) {
+      console.error("Error al subir la imagen a Imgur:", error);
+      return null;
+  }
+}
