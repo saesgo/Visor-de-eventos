@@ -79,9 +79,6 @@ function actualizarDetalle(index) {
   indiceSeleccionado = index;
   turnosContainer.children[indiceSeleccionado].classList.toggle("seleccionado", true);
 }
-
-finalizar.addEventListener("click", () => marcarTerminado(indiceSeleccionado));
-
 async function marcarTerminado(i) {
   const filaAEditar = 0; // Define filaAEditar según sea necesario
   const updateTurno = turnos[i];
@@ -103,6 +100,7 @@ async function marcarTerminado(i) {
     comentarioElement.value = "";
   }
 }
+finalizar.addEventListener("click", () => marcarTerminado(indiceSeleccionado));
 
 async function agregarNuevoTurno(turno) {
   const id = await getUltimoID(); // Obtiene el ID automáticamente

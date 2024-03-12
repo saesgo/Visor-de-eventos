@@ -89,3 +89,8 @@ footer {
 footer a {
   color: var(--color-texto);
 }
+
+.tarjeta.seleccionada {
+  background-color: var(--color-acento); /* Cambia el color de fondo solo cuando la tarjeta está seleccionada */
+  color: var(--color-fondo); /* Cambia el color del texto cuando la tarjeta está seleccionada */
+}

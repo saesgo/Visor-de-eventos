@@ -8,9 +8,6 @@ let gisInited = false;
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById("gapi").addEventListener("load", gapiLoaded);
   document.getElementById("gis").addEventListener("load", gisLoaded);
-
-  document.getElementById('authorize_button').style.visibility = 'hidden';
-  document.getElementById('signout_button').style.visibility = 'hidden';
   document.getElementById('nuevoTurnoForm').style.display = 'none';
 });
 
@@ -82,3 +79,5 @@ function handleSignoutClick() {
     document.getElementById('signout_button').style.visibility = 'hidden';
   }
 }
+
+export { handleAuthClick, handleSignoutClick };
