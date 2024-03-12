@@ -79,5 +79,3 @@ function handleSignoutClick() {
     document.getElementById('signout_button').style.visibility = 'hidden';
   }
 }
-
-export { handleAuthClick, handleSignoutClick };
