@@ -14,8 +14,10 @@
         <h1>Casos Sistema de Recall</h1>
         <h2>Elaborado por: Santiago Escudero Gomez</h2>
     </header>
-    <button id="authorize_button" style="visibility: hidden;" onclick="handleAuthClick()">Iniciar sesión</button>
-    <button id="signout_button" style="visibility: hidden;" onclick="handleSignoutClick()">Cerrar sesión</button>
+
+    <button id="authorize_button" onclick="handleAuthClick()">Iniciar sesión</button>
+    <button id="signout_button" onclick="handleSignoutClick()">Cerrar sesión</button>
+   
     <main>
         <div id="turnosContainer"></div>
         <div id="detalleContainer" class="escondido">
@@ -48,13 +50,13 @@
         </div>
     </main>
 
-    <script async defer src="https://apis.google.com/js/api.js" id="gapi"></script>
-    <script async defer src="https://accounts.google.com/gsi/client" id="gis"></script>
-    <script async defer src="js/auth.js"></script>
-    <script async defer src="js/sheets.js"></script>
-    <script async defer src="js/index.js"></script>
-    <script async defer src="js/imgur.js"></script>
-    <script async defer src="js/credenciales.js"></script> <!-- Si es necesario -->
+    <script defer src="https://apis.google.com/js/api.js" id="gapi"></script>
+    <script defer src="https://accounts.google.com/gsi/client" id="gis"></script>
+    <script defer src="js/auth.js"></script>
+    <script defer src="js/sheets.js"></script>
+    <script defer src="js/index.js"></script>
+    <script defer src="js/imgur.js"></script>
+    <script defer src="js/credenciales.js"></script> <!-- Si es necesario -->
 </body>
 
 </html>
