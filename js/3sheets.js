@@ -104,28 +104,5 @@ async function getLastId() {
   }
 }
 
-async function marcarTerminado(i) {
-  const updateTurno = turnos[i];
-  updateTurno.comentario = comentarioElement.value;
+export { getTurnos, editTurno, addTurno, getLastId };
 
-  try {
-      const res = await editTurno(updateTurno.id, updateTurno, updateTurno.fila);
-
-      if (res && res.status === 200) {
-          turnos = turnos.filter(turno => turno.id !== updateTurno.id);
-          indiceSeleccionado = 0;
-
-          Array.from(turnosContainer.children).forEach((tarjeta, index) => {
-              if (index === indiceSeleccionado) {
-                  tarjeta.classList.toggle("seleccionado", false);
-              }
-          });
-
-          await actualizarTarjetas();
-          detalleContainer.classList.toggle("escondido", true);
-          comentarioElement.value = "";
-      }
-  } catch (err) {
-      console.error(err);
-  }
-}
