@@ -61,4 +61,3 @@ async function marcarTerminado(i) {
 }
 
 
-export { marcarTerminado };
