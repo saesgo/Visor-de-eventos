@@ -7,7 +7,7 @@ const nombreEvaluadorElement = document.getElementById("nombreEvaluador");
 const tituloProblemaElement = document.getElementById("tituloProblema");
 const descripcionProblemaElement = document.getElementById("descripcionProblema");
 const imagenElement = document.getElementById("imagen");
-const comentarioElement = document.getElementById("comentarioElement");
+const comentarioElement = document.getElementById("");
 const finalizar = document.getElementById("finalizar");
 const agregarTurno = document.getElementById("agregarTurno");
 
