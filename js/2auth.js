@@ -1,4 +1,4 @@
-const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
+DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
 const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
 
 // Credenciales
@@ -12,7 +12,6 @@ let gisInited = false;
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById("gapi").addEventListener("load", gapiLoaded());
   document.getElementById("gis").addEventListener("load", gisLoaded());
-  document.getElementById('nuevoTurnoForm').style.display = 'none';
   // Agregar evento de clic a cada tarjeta para la selección/deselección
 const tarjetas = document.querySelectorAll(".tarjeta");
 tarjetas.forEach(tarjeta => {
@@ -56,10 +55,11 @@ function gisLoaded() {
 }
 
 function maybeEnableButtons() {
+  // Solo activa los botones cuando tanto gapiInited como gisInited sean true
   if (gapiInited && gisInited) {
-    document.getElementById('authorize_button').style.visibility = 'visible';
-    document.getElementById('signout_button').style.visibility = 'visible';
-    document.getElementById('nuevoTurnoForm').style.display = 'block'; 
+      document.getElementById('authorize_button').style.visibility = 'visible';
+      document.getElementById('signout_button').style.visibility = 'hidden';
+      document.getElementById('nuevoTurnoForm').style.visibility = 'hidden'; 
   }
 }
 
@@ -71,10 +71,9 @@ function handleAuthClick() {
     }
     document.getElementById('signout_button').style.visibility = 'visible';
     document.getElementById('authorize_button').innerText = 'Recargar';
+    document.getElementById('nuevoTurnoForm').style.visibility = 'visible';
     await getTurnos();
     actualizarTarjetas();
-
-    document.getElementById('nuevoTurnoForm').classList.remove('escondido');
   };
 
   if (gapi.client.getToken() === null) {

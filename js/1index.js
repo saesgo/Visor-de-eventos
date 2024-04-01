@@ -1,5 +1,5 @@
 const turnosContainer = document.getElementById("turnosContainer");
-const detalleContainer = document.getElementById("detalleContainer");
+
 let indiceSeleccionado;
 const clienteElement = document.getElementById("cliente");
 const idElement = document.getElementById("id");
@@ -10,7 +10,7 @@ const imagenElement = document.getElementById("imagen");
 const comentarioElement = document.getElementById("comentarioElement");
 const finalizar = document.getElementById("finalizar");
 const agregarTurno = document.getElementById("agregarTurno");
-const nuevoTurnoForm = document.getElementById("nuevoTurnoForm");
+
 const formularioTurno = document.getElementById("formularioTurno");
 
 // Agrega la función init
@@ -55,6 +55,7 @@ function createTarjeta(turno, index) {
       <p>Evaluador: ${turno.evaluador}</p>
       <p>Descripción : ${turno.descripcionProblema}</p>
       <img src="${turno.imagen}" alt="Imagen del problema">
+      <img src="https://i.imgur.com/hpBjqg1.png" id="img" height="200 px">
   `;
   nuevaTarjeta.addEventListener("click", () => actualizarDetalle(index));
   turnosContainer.appendChild(nuevaTarjeta);
@@ -79,28 +80,7 @@ function actualizarDetalle(index) {
   indiceSeleccionado = index;
   turnosContainer.children[indiceSeleccionado].classList.toggle("seleccionado", true);
 }
-async function marcarTerminado(i) {
-  const filaAEditar = 0; // Define filaAEditar según sea necesario
-  const updateTurno = turnos[i];
-  updateTurno.comentario = comentarioElement.value;
-  const res = await editTurno(updateTurno.id, updateTurno, filaAEditar);
-  if (res.status === 200) {
-    turnos = turnos.filter(turno => turno.id !== updateTurno.id);
-    indiceSeleccionado = 0;
 
-    // Ocultar las tarjetas marcadas
-    Array.from(turnosContainer.children).forEach((tarjeta, index) => {
-      if (index === indiceSeleccionado) {
-        tarjeta.classList.toggle("seleccionado", false);
-      }
-    });
-
-    await actualizarTarjetas();
-    detalleContainer.classList.toggle("escondido", true);
-    comentarioElement.value = "";
-  }
-}
-finalizar.addEventListener("click", () => marcarTerminado(indiceSeleccionado));
 
 async function agregarNuevoTurno(turno) {
   const id = await getUltimoID(); // Obtiene el ID automáticamente

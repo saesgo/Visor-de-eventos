@@ -1,3 +1,4 @@
+
 let turnos = [];
 
 async function getTurnos() {
@@ -15,7 +16,7 @@ async function getTurnos() {
 
     turnos = [];
     range.values.forEach((fila) => {
-      if (isNaN(parseInt(fila[0])) || fila[6] !== undefined) return;
+      if (isNaN(parseInt(fila[0])) || fila[5] !== undefined) return;
       const nuevoTurno = {
         id: fila[0],
         evaluador: fila[1], 
@@ -43,8 +44,9 @@ async function editTurno(id, contenido, filaAEditar) {
     new Date().toISOString(),
     contenido.comentario
   ];
-
+  
   try {
+    const filaAEditar = parseInt(id)+1;
     const response = await gapi.client.sheets.spreadsheets.values.update({
       spreadsheetId: '16nyuvP5Y4TmHjLnPAknJJIlQOBY5bXoa7imKKOn4BYQ',
       range: `Turnos!A${filaAEditar}:G${filaAEditar}`, // Corregido el rango para incluir las cinco columnas

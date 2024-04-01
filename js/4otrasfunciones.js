@@ -11,7 +11,7 @@ tarjetas.forEach(tarjeta => {
   });
 });
 
-// Definir la función para marcar un turno como terminado
+
 async function marcarTerminado(i) {
   const filaAEditar = 0; // Define filaAEditar según sea necesario
   const updateTurno = turnos[i];
@@ -33,31 +33,4 @@ async function marcarTerminado(i) {
     comentarioElement.value = "";
   }
 }
-
-async function marcarTerminado(i) {
-  const updateTurno = turnos[i];
-  updateTurno.comentario = comentarioElement.value;
-
-  try {
-      const res = await editTurno(updateTurno.id, updateTurno, updateTurno.fila);
-
-      if (res && res.status === 200) {
-          turnos = turnos.filter(turno => turno.id !== updateTurno.id);
-          indiceSeleccionado = 0;
-
-          Array.from(turnosContainer.children).forEach((tarjeta, index) => {
-              if (index === indiceSeleccionado) {
-                  tarjeta.classList.toggle("seleccionado", false);
-              }
-          });
-
-          await actualizarTarjetas();
-          detalleContainer.classList.toggle("escondido", true);
-          comentarioElement.value = "";
-      }
-  } catch (err) {
-      console.error(err);
-  }
-}
-
-
+finalizar.addEventListener("click", () => marcarTerminado(indiceSeleccionado));

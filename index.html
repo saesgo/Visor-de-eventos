@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casos Sistema de Recall</title>
+    <title>Casos Sistema de Calidad</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,8 +20,8 @@
 
     <main>
         <div id="turnosContainer"></div>
+
         <div id="detalleContainer" class="escondido">
-            <h2 id="cliente">Nombre</h2>
             <p>ID: <span id="id" contenteditable="true"></span></p>
             <p>Nombre del evaluador: <span id="nombreEvaluador" contenteditable="true"></span></p>
             <p>Titulo del problema: <span id="tituloProblema" contenteditable="true"></span></p>
@@ -30,35 +30,62 @@
                 <label for="comentario">Comentario del técnico:</label>
                 <input type="text" id="comentario" name="comentario" />
             </div>
-            <img id="imagen" src="" alt="Imagen del problema">
-            <button id="finalizar">Marcar finalizado</button>
-        </div>
-        <!-- Formulario para agregar un nuevo evento -->
-        <div id="nuevoTurnoForm" class="escondido">
-            <h2>Agregar Nuevo evento</h2>
-            <form id="formularioTurno">
-                <label for="tituloProblemaNuevo">Título del problema:</label>
-                <input type="text" id="tituloProblemaNuevo" name="tituloProblema" required>
-                <label for="evaluadorNuevo">Evaluador:</label>
-                <input type="text" id="evaluadorNuevo" name="evaluador" required>
-                <label for="descripcionProblemaNuevo">Descripción del problema:</label>
-                <textarea id="descripcionProblemaNuevo" name="descripcionProblema" rows="4" required></textarea>
-                <label for="insertarImagen">Insertar Imagen:</label>
-                <input type="file" id="insertarImagen" accept="image/*">
-                <button type="submit" id="agregarTurno">Agregar</button>
-            </form>
-        </div>
-    </main>
-    
+            <div >    
+                <img id="imagen" src="" alt="Imagen del problema">
+                <input type="file" id="file">
+                <img src="https://i.imgur.com/hpBjqg1.png" id="img" height="200 px">
+                <p id="url"></p>
+                <script>
+                    const file = document.getElementById('file');
+                    const img = document.getElementById("img")
+                    const url = document.getElementById("url")
+                    file.addEventListener("change", ev => {
+                        const formdata = new FormData()
+                        formdata.append("image", ev.target.files[0])
+                        fetch("https://api.imgur.com/3/image/", {
+                            method: "post",
+                         headers: {
+                                Authorization: "Client-ID ae16a4008387500"
+                            }
+                         , body: formData
+                        }).then(data => data.json()).then(data => {
+                         img.src = data.data.link;
+                         url.innerText = data.data.link
+                        })
+                    })
+                </script>
+                <button id = "finalizar" > Marcar finalizado</button >
+            </div >
+        </div >
+    </main >
 
-    <script defer src="https://apis.google.com/js/api.js" id="gapi"></script>
-    <script defer src="https://accounts.google.com/gsi/client" id="gis"></script>
-    <script defer src="js/1index.js"></script>
-    <script defer src="js/2auth.js"></script>
-    <script defer src="js/3sheets.js"></script>
-    <script defer src="js/4otrasfunciones.js"></script>
-    <script defer src="js/imgur.js"></script>
-    <!-- Puedes agregar el código de credentials.js aquí si es necesario -->
+                    <!-- Formulario para agregar un nuevo evento -->
+                    <div id="nuevoTurnoForm">
+                        <h2>Agregar Nuevo evento</h2>
+                        <form id="formularioTurno">
+                            <label for="tituloProblemaNuevo">Título del problema:</label>
+                            <input type="text" id="tituloProblemaNuevo" name="tituloProblema" required>
+                                <label for="evaluadorNuevo">Evaluador:</label>
+                                <input type="text" id="evaluadorNuevo" name="evaluador" required>
+                                    <label for="descripcionProblemaNuevo">Descripción del problema:</label>
+                                    <textarea id="descripcionProblemaNuevo" name="descripcionProblema" rows="4" required></textarea>
+                                    <label for="insertarImagen">Insertar Imagen:</label>
+                                    <input type="file" id="insertarImagen" accept="image/*">
+                                        <button type="submit" id="agregarTurno">Agregar</button>
+                                    </form>
+                                </div>
+
+                                <script defer src="https://apis.google.com/js/api.js" id="gapi"></script>
+            <script defer src="https://accounts.google.com/gsi/client" id="gis"></script>
+            <script defer src="js/1index.js"></script>
+            <script defer src="js/2auth.js"></script>
+            <script defer src="js/3sheets.js"></script>
+            <script defer src="js/4otrasfunciones.js"></script>
+
+            <!-- Puedes agregar el código de credentials.js aquí si es necesario -->
+
+
+            </script>
 </body>
 
 </html>

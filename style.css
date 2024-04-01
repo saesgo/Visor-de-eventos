@@ -51,14 +51,9 @@ button {
 }
 
 .tarjeta:hover,
-.tarjeta.seleccionado {
-  background-color: var(--color-acento);
-  color: var(--color-fondo);
-}
-
-.tarjeta:hover h3,
-.tarjeta.seleccionado h3 {
-  color: var(--color-fondo);
+.tarjeta.seleccionada {
+  background-color: var(--color-acento); /* Cambia el color de fondo solo cuando la tarjeta está seleccionada */
+  color: var(--color-fondo); /* Cambia el color del texto cuando la tarjeta está seleccionada */
 }
 
 .tarjeta p {
@@ -73,14 +68,6 @@ button {
   padding: 10px;
 }
 
-#detalleContainer div {
-  margin-bottom: 10px; /* Se corrigió la sintaxis del margin-bottom */
-  padding: 5px; /* Se corrigió la sintaxis del padding */
-}
-
-.escondido {
-  display: none;
-}
 
 footer {
   text-align: center;
@@ -90,7 +77,7 @@ footer a {
   color: var(--color-texto);
 }
 
-.tarjeta.seleccionada {
-  background-color: var(--color-acento); /* Cambia el color de fondo solo cuando la tarjeta está seleccionada */
-  color: var(--color-fondo); /* Cambia el color del texto cuando la tarjeta está seleccionada */
+
+.escondido {
+  display: none;
 }
